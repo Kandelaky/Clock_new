@@ -1,0 +1,45 @@
+<script src="/jquery.js" type="text/javascript"></script>
+       <script>
+         var slider = document.getElementById("servoSlider");
+     var servoP = document.getElementById("servoPos");
+     var url = '?value=';
+     var request = new XMLHttpRequest();
+     servoP.innerHTML = slider.value;
+     slider.oninput = function() {
+      slider.value = this.value;
+      servoP.innerHTML = this.value;
+     }
+     function servo(pos) {
+       console.log(url);
+        request.open('GET', url+pos+"&");
+        request.responseType = 'text';
+        request.onload = function() {
+         ss = request.response;
+            };
+        request.send();
+     }
+       </script>
+   <script>
+   $(function(){
+   $('.toggle-button').click(function (e, changeState) {
+   if (changeState === undefined) {
+      $(this).toggleClass('switch-on');
+    }
+    if ($(this).hasClass('switch-on')) {
+     $(this).trigger('on.switch');
+    } else {
+      $(this).trigger('off.switch');
+    }
+   });
+   $('.toggle-button').on('on.switch', function(){
+   var b = document.querySelector("#setntp");
+    b.value = "on";
+     console.log('Кнопка переключена в состояние on');
+   });
+     $('.toggle-button').on('off.switch', function(){
+       var b = document.querySelector("#setntp");
+       b.value = "off";
+       console.log('Кнопка переключена в состояние off');
+     });
+   });
+   </script>
